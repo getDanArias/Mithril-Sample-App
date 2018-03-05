@@ -56,6 +56,8 @@ In the root folder, we also find these key files:
 
 To run the application successfully you need to have an active Auth0 account to provide the needed data to allow the application to talk to Auth0.
 
+> To see how Auth0 integrates with the application checkout the `auth` branch.  
+
 ### What is Auth0?
 
 Auth0 helps you to:
