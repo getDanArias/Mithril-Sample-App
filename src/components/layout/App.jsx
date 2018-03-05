@@ -11,13 +11,27 @@ import CardContainer from '../../components/layout/CardContainer.jsx';
 import ConferenceCard from '../../components/cards/ConferenceCard.jsx';
 import CFPCard from '../../components/cards/CFPCard.jsx';
 import EntryForm from '../../components/EntryForm.jsx';
+import UIButton from '../../components/ui/UIButton.jsx';
 
 // Mock data
 import {getMockData} from '../../store/data';
 const CONFERENCES = getMockData();
 
+// Services
+import Auth from '../../services/auth.js';
+const auth = new Auth();
+
+const WelcomeView = () => [
+	<h1 class="app-title">Conference Tracker</h1>,
+	<h2 class="app-greeting">Welcome</h2>,
+	<span class="app-description">Track conferences and CFP dates.</span>,
+	<div class="login-button">
+		<UIButton action={() => auth.login()} buttonName="LOGIN" />
+	</div>
+];
+
 const ConferenceView = (conferences) => [
-	<StageBanner action={() => console.log(`Logging out!`)} title="Conferences" />,
+	<StageBanner action={() => auth.logout()} title="Conferences" />,
 	<CardContainer>
 		{
 			conferences
@@ -27,7 +41,7 @@ const ConferenceView = (conferences) => [
 ];
 
 const CFPView = (conferences) => [
-	<StageBanner action={() => console.log(`Logging out!`)} title="Call for Papers" />,
+	<StageBanner action={() => auth.logout()} title="Call for Papers" />,
 	<CardContainer>
 		{
 			conferences
@@ -38,7 +52,7 @@ const CFPView = (conferences) => [
 ];
 
 const FormView = () => [
-	<StageBanner action={() => console.log(`Logging out!`)} title="Add Conference" />,
+	<StageBanner action={() => auth.logout()} title="Add Conference" />,
 	<CardContainer>
 		<EntryForm />
 	</CardContainer>
@@ -48,15 +62,30 @@ const App = {
 	oncreate: (vnode) => {
 		const mainStage = vnode.dom.querySelector(".main-stage");
 
-		m.route(mainStage, "/conferences", {
+		auth.handleAuthentication();
+
+		m.route(mainStage, "/auth", {
+			"/auth": {
+				view: () => WelcomeView()
+			},
 			"/conferences": {
-				view: () => ConferenceView(CONFERENCES)
+				onmatch: () =>
+					auth.isAuthenticated() ?
+						({view: () => ConferenceView(CONFERENCES)}) :
+						m.route.set("/auth")
+
 			},
 			"/cfp": {
-				view: () => CFPView(CONFERENCES)
+				onmatch: () =>
+					auth.isAuthenticated() ?
+						({view: () => CFPView(CONFERENCES)}) :
+						m.route.set("/auth")
 			},
 			"/entry": {
-				view: () => FormView()
+				onmatch: () =>
+					auth.isAuthenticated() ?
+						({view: () => FormView()}) :
+						m.route.set("/auth")
 			}
 		});
 	},
