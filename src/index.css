@@ -1,0 +1,140 @@
+/* index.css */
+
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
+body,
+html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: #003863;
+    font-family: 'Rubik', sans-serif;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.nav-bar {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #EE5F28;
+}
+
+.main-stage {
+    flex: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.nav-button {
+    color: white;
+    font-size: 150%;
+    cursor: pointer;
+}
+
+.stage-banner {
+    position: relative;
+    margin: 0.5em;
+}
+
+.stage-banner svg {
+    position: absolute;
+    color: #EE5F28;
+    right: 0;
+    top: 47%;
+    transform: translateY(-50%);
+    font-size: 120%;
+}
+
+.stage-title {
+    text-align: center;
+    padding: 1em 0;
+    margin: 0.5em;
+    color: #EE5F28;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 110%;
+    letter-spacing: 2px;
+}
+
+.card-container {
+    flex: display;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.conference-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5em;
+    margin: 0.5em;
+    font-size: 100%;
+    background: white;
+}
+
+.conference-fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.conference-field {
+    display: flex;
+    margin: 0.5em;
+    font-size: 100%;
+}
+
+.ui-button {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 1em 0;
+    padding: 1em;
+    width: 50%;
+    background: #EE5F28;
+    left: 0;
+    right: 0;
+}
+
+#entry-form {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#entry-form label {
+    padding: 1em 0;
+}
+
+#entry-form input[type="text"] {
+    margin: 0 0 0.5em 0;
+    padding: 0.75em;
+    font-size: 16px;
+}
+
+.form-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.form-question label {
+    padding: 0;
+}
