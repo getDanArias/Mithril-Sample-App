@@ -93,6 +93,9 @@ const AUTH0 = {
 
 export default AUTH0;
 ```
+
+> The audience is a parameter set during authorization, and it contains the unique identifier of the target API. This is how you tell Auth0 for which API to issue an Access Token, which is the intended audience of this token. If you do not want to access a custom API, then by setting the audience to yourdomain.auth0.com/userinfo, you can use the opaque Access Token to retrieve the user's profile.
+
 8. As an important step, add `auth0-variables.js` to the `.gitignore` file so that it's never committed to source control.
 9. Back in the Auth0 Dashboard, click on `Settings` under the client's name and scroll down till you find "Allowed Callback URLs". 
 10. Paste your desired callback URL here &mdash; it may be your localhost address where the project is being run locally &mdash; and save the settings.
